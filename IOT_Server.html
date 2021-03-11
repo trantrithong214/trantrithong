@@ -145,10 +145,38 @@
                     let txt = $(
                         `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
                     ).text(element.name);
+                    `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
+                    ).text(element.name1);
+                $("#stations").append(txt);
+                $(`#${element.id}`).click(function () {
+                    stationID = element.id;
+                    console.log(element.name);
+                    socket.emit("join-room", element.id);
+
+                    let current = document.getElementsByClassName("active");
+                    console.log(current);
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace("active", "");
+                    }
+                    $(`#${element.id}`).addClass("active");
+                });
+            });
+            });
+
+
+
+            socket.on("stations", (msg) => {
+                $("#stations").empty();
+                console.log(msg);
+                msg.forEach((element) => {
+                    let isActiveTxt = element.id === stationID ? "active" : "";
+                    let txt = $(
+                        `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
+                    ).text(element.name1);
                     $("#stations").append(txt);
                     $(`#${element.id}`).click(function () {
                         stationID = element.id;
-                        console.log(element.name);
+                        console.log(element.name1);
                         socket.emit("join-room", element.id);
 
                         let current = document.getElementsByClassName("active");
@@ -160,7 +188,6 @@
                     });
                 });
             });
-
 
             socket.on("ledStatus", (msg) => {
                 led = msg;
