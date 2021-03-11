@@ -187,6 +187,7 @@
         });
 
         socket.on("disconnect", () => {
+        
             console.log("user ", socket.id, " disconnected");
             $("#server-status").text("Server disconnected")
             $("#stations").empty();
