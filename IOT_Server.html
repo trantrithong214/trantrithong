@@ -70,7 +70,27 @@
             cursor: pointer;
         }
 
-       
+        .button:focus {
+            outline: none;
+        }
+
+        /* Green */
+        .button1 {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* red */
+        .button2 {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Yellow */
+        .button3 {
+            background-color: #ffe605;
+            color: white;
+        }
 
         /*  */
         .btn {
@@ -94,11 +114,15 @@
 </head>
 
 <body>
-    <h1>Weather Station </h1>
+    <h1>Weather Station V1.0</h1>
     <div id="server-status"></div>
     <div id="stations"></div>
 
-    
+    <div class="block">
+        <button id="bt1" class="button">LED 1</button>
+        <button id="bt2" class="button">LED 2</button>
+        <button id="bt3" class="button">LED 3</button>
+    </div>
     <div class="block">
         <div class="temp">
             <div class='tempVal' id="tempC"></div>
@@ -159,7 +183,19 @@
             });
         })
 
-        
+        socket.on('ledStatus', (msg) => {
+            led = msg;
+            console.log(led);
+            if (led.led1 === true) {
+                $("#bt1").addClass('button1');
+            } else $("#bt1").removeClass('button1');
+            if (led.led2 === true) {
+                $("#bt2").addClass('button2');
+            } else $("#bt2").removeClass('button2');
+            if (led.led3 === true) {
+                $("#bt3").addClass('button3');
+            } else $("#bt3").removeClass('button3');
+        })
         socket.on('temp2web', (msg) => {
             $('#tempC').text(msg.tempC);
             $('#tempF').text(msg.tempF);
