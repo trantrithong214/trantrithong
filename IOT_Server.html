@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name1="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Station</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -144,11 +144,11 @@
                     let isActiveTxt = element.id === stationID ? "active" : "";
                     let txt = $(
                         `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
-                    ).text(element.name);
+                    ).text(element.name1);
                     $("#stations").append(txt);
                     $(`#${element.id}`).click(function () {
                         stationID = element.id;
-                        console.log(element.name);
+                        console.log(element.name1);
                         socket.emit("join-room", element.id);
 
                         let current = document.getElementsByClassName("active");
