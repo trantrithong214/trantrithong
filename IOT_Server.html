@@ -94,7 +94,7 @@
 </head>
 
 <body>
-    <h1>Weather Station V1.0</h1>
+    <h1>Weather Station</h1>
     <div id="server-status"></div>
     <div id="stations"></div>
 
@@ -110,7 +110,11 @@
             <div class="tempO">o</div>
             <div class='tempUnit'>F</div>
         </div>
-    </div>
+        <div class="temp">    
+            <div class='tempVal' id="temHumi"><</div>
+            <div class='tempO'>o</div>
+            <div class='tempUnit'>%</div>
+        </div>
 
     <script>
         var led = { led1: 0, led2: 0, led3: 0 };
@@ -171,10 +175,11 @@
             if (led.led3 === true) {
                 $("#bt3").addClass('button3');
             } else $("#bt3").removeClass('button3');
-        })
+        })git 
         socket.on('temp2web', (msg) => {
             $('#tempC').text(msg.C1);
             $('#tempF').text(msg.F1);
+            $('#tempHumi').text(msg.h1);
         })
 
         socket.on("connect", () => {
