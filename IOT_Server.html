@@ -114,7 +114,9 @@
 
 
         <script>
-
+            var led = { led1: 0, led2: 0, led3: 0 };
+            var stationID = "";
+            var socket = io();
 
             $(document).ready(function () {
                 $("#bt1").click(function () {
