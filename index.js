@@ -5,7 +5,7 @@ var io = require("socket.io")(http);
 var stations = [];
 var stations_ID = [];
 var ledInit = { led1: null, led2: null, led3: null };
-var tempNull = { tempC: "", tempF: "", tempK: "" };
+var tempNull = { tempC: "", tempF: "", tempHumi: "" };
 
 const PORT = 3484;
 http.listen(process.env.PORT || PORT, console.log("server running ", PORT));
@@ -36,13 +36,13 @@ io.on("connection", (socket) => {
     stations.push(stationTemp);
     stations_ID.push(stationTemp.id);
     console.log("stations_ID[]: ", stations_ID);
-    
+
     io.to(socket.id).emit("station-id", socket.id);
     io.emit("stations", stations);
   });
 
   socket.on("update-station", (station) => {
-    console.log("station will updated: ", station.name,": ",station.id);
+    console.log("station will updated: ", station.name, ": ", station.id);
     let isStationUpdate = (element) => element.id == station.id;
     let index = stations.findIndex(isStationUpdate);
     stations[index] = station;
