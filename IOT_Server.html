@@ -173,8 +173,8 @@
             } else $("#bt3").removeClass('button3');
         })
         socket.on('temp2web', (msg) => {
-            $('#tempC').text(msg.tempC);
-            $('#tempF').text(msg.tempF);
+            $('#tempC').text(msg.C1);
+            $('#tempF').text(msg.F1);
         })
 
         socket.on("connect", () => {
