@@ -115,7 +115,28 @@
 
 
         <script>
+            var led = { led1: 0, led2: 0, led3: 0 };
+            var stationID = "";
+            var socket = io();
 
+            $(document).ready(function () {
+                $("#bt1").click(function () {
+                    led.led1 = !led.led1;
+                    let led_msg = { led: led, id: stationID };
+                    socket.emit("led", led_msg);
+                });
+                $("#bt2").click(function () {
+                    led.led2 = !led.led2;
+                    let led_msg = { led: led, id: stationID };
+                    socket.emit("led", led_msg);
+                });
+                $("#bt3").click(function () {
+                    var tempSetting = { freq: 5 };
+                    led.led3 = !led.led3;
+                    let led_msg = { led: led, id: stationID };
+                    socket.emit("led", led_msg);
+                });
+            });
 
 
 
