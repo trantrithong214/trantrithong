@@ -16,7 +16,7 @@
             border: 1px solid rgb(175, 42, 42);
             border-radius: 20px;
             padding: 30px;
-            width: 1500px;
+            width: 600px;
             margin-top: 40px;
         }
 
@@ -25,50 +25,54 @@
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            width: 160px;
+            width: 50px;
             margin-left: 10px;
         }
 
-        .tempVal {
+
+
+
+
+        .tempVal1 {
             flex-direction: row;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 50px;
-            color: cornflowerblue;
-            font-weight: 200;
+            color: rgb(1, 6, 15);
+            font-weight: 10;
         }
+
+        .tempVal2 {
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: rgb(23, 83, 196);
+            font-weight: 10;
+        }
+
+
+
+
 
         .tempUnit {
             flex-direction: row;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            color: rgb(139, 175, 241);
+            font-size: 50px;
+            color: rgb(23, 83, 196);
         }
 
         .tempO {
-            color: rgb(139, 175, 241);
+            color: rgb(23, 83, 196);
             font-size: 15px;
             margin: 2px;
         }
 
-        .button {
-            display: flex;
-            flex-direction: row;
-            background-color: #e7e7e7;
-            border: none;
-            color: rgb(158, 155, 155);
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-            font-weight: bold;
-            border-radius: 10px;
-            width: 100px;
-            height: 60px;
-            cursor: pointer;
-        }
+
 
         /*  */
         .btn {
@@ -99,13 +103,15 @@
 
     <div class="block">
         <div class="temp">
-            <div class="tempVal">Nhiệt độ: </div>
-            <div class="tempVal" id="tempC"></div>
+            <div class="tempVal1">Nhiệt độ:</div>
+        </div>
+        <div class="temp">
+            <div class="tempVal2" id="tempC"></div>
             <div class="tempO">o</div>
             <div class="tempUnit">C</div>
         </div>
         <div class="temp">
-            <div class="tempVal" id="tempF"></div>
+            <div class="tempVal2" id="tempF"></div>
             <div class="tempO">o</div>
             <div class="tempUnit">F</div>
         </div>
@@ -116,10 +122,11 @@
     </div>
     <div class="block">
 
-
         <div class="temp">
-            <div class="tempVal">Độ Ẩm: </div>
-            <div class="tempVal" id="tempHumi"></div>
+            <div class="tempVal1">Độ ẩm:</div>
+        </div>
+        <div class="temp">
+            <div class="tempVal2" id="tempHumi"></div>
             <div class="tempUnit">%</div>
         </div>
 

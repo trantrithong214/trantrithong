@@ -4,7 +4,7 @@ var io = require("socket.io")(http);
 
 var stations = [];
 var stations_ID = [];
-var ledInit = { led1: null, led2: null, led3: null };
+
 var tempNull = { tempC: "", tempF: "", tempHumi: "" };
 
 const PORT = 3484;
@@ -69,15 +69,5 @@ io.on("connection", (socket) => {
   socket.on("temp", (msg) => {
     console.log(msg);
     io.to(socket.id).emit("temp2web", msg);
-  });
-
-  socket.on("led", (msg) => {
-    console.log("Web control led: ", msg);
-    io.to(msg.id).emit("led", msg.led);
-  });
-
-  socket.on("ledStatus", (msg) => {
-    console.log("Led status from station: ", msg);
-    io.to(socket.id).emit("ledStatus", msg);
   });
 });
