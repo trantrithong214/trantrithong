@@ -206,17 +206,7 @@
             });
         </script>
         <div class="block">
-            <div class="temp">
-                <div class="tempVal">Nhiệt độ: </div>
-                <div class="tempVal" id="tempC"></div>
-                <div class="tempO">o</div>
-                <div class="tempUnit">C</div>
-            </div>
-            <div class="temp">
-                <div class="tempVal" id="tempF"></div>
-                <div class="tempO">o</div>
-                <div class="tempUnit">F</div>
-            </div>
+
 
             <div class="temp">
                 <div class="tempVal">Độ Ẩm: </div>
@@ -248,10 +238,6 @@
                         socket.emit("led", led_msg);
                     });
                 });
-
-
-
-
                 socket.on("stations", (msg) => {
                     $("#stations").empty();
                     console.log(msg);
@@ -275,8 +261,6 @@
                         });
                     });
                 });
-
-
                 socket.on("ledStatus", (msg) => {
                     led = msg;
                     console.log(led);
@@ -294,26 +278,8 @@
                     $('#tempC').text(msg.C1);
                     $('#tempF').text(msg.F1);
                     $('#tempHumi').text(msg.H1);
-                })
+                })    
+</body >
 
 
-                socket.on("connect", () => {
-                    console.log("user", socket.id, " connected");
-                    $("#server-status").text("Server connected");
-                });
-
-                socket.on("disconnect", () => {
-                    console.log("user ", socket.id, " disconnected");
-                    $("#server-status").text("Server disconnected");
-                    $("#stations").empty();
-                    $("#bt1").removeClass("button1");
-                    $("#bt2").removeClass("button2");
-                    $("#bt3").removeClass("button3");
-                    $("#tempC").text("");
-                    $("#tempF").text("");
-                });
-            </script>
-</body>
-
-
-</html>
+</html >
