@@ -94,8 +94,8 @@
 <body>
     <h1>Weather Station</h1>
     <div id="server-status"></div>
-    <div id="stations"></div>
-    <div id="stations"></div>
+    <div id="stations1"></div>
+    <div id="stations2"></div>
 
     <div class="block">
         <div class="temp">
@@ -141,15 +141,38 @@
 
 
 
-            socket.on("stations", (msg) => {
-                $("#stations").empty();
+            socket.on("stations1", (msg) => {
+                $("#stations1").empty();
                 console.log(msg);
                 msg.forEach((element) => {
                     let isActiveTxt = element.id === stationID ? "active" : "";
                     let txt = $(
                         `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
                     ).text(element.name1);
-                    $("#stations").append(txt);
+                    $("#stations1").append(txt);
+                    $(`#${element.id}`).click(function () {
+                        stationID = element.id;
+                        console.log(element.name1);
+                        socket.emit("join-room", element.id);
+
+                        let current = document.getElementsByClassName("active");
+                        console.log(current);
+                        if (current.length > 0) {
+                            current[0].className = current[0].className.replace("active", "");
+                        }
+                        $(`#${element.id}`).addClass("active");
+                    });
+                });
+            });
+            socket.on("stations2", (msg) => {
+                $("#stations2").empty();
+                console.log(msg);
+                msg.forEach((element) => {
+                    let isActiveTxt = element.id === stationID ? "active" : "";
+                    let txt = $(
+                        `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
+                    ).text(element.name1);
+                    $("#stations2").append(txt);
                     $(`#${element.id}`).click(function () {
                         stationID = element.id;
                         console.log(element.name1);
