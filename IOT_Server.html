@@ -145,22 +145,21 @@
                     let txt = $(
                         `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
                     ).text(element.name);
-                    `<button id=${element.id} class="btn ${isActiveTxt}"></button>`
-                    ).text(element.name1);
-                $("#stations").append(txt);
-                $(`#${element.id}`).click(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
 
-                    let current = document.getElementsByClassName("active");
-                    console.log(current);
-                    if (current.length > 0) {
-                        current[0].className = current[0].className.replace("active", "");
-                    }
-                    $(`#${element.id}`).addClass("active");
+                    $("#stations").append(txt);
+                    $(`#${element.id}`).click(function () {
+                        stationID = element.id;
+                        console.log(element.name1);
+                        socket.emit("join-room", element.id);
+
+                        let current = document.getElementsByClassName("active");
+                        console.log(current);
+                        if (current.length > 0) {
+                            current[0].className = current[0].className.replace("active", "");
+                        }
+                        $(`#${element.id}`).addClass("active");
+                    });
                 });
-            });
             });
 
 
@@ -202,11 +201,7 @@
                     $("#bt3").addClass("button3");
                 } else $("#bt3").removeClass("button3");
             });
-            socket.on("temp2web", (msg) => {
-                $("#tempC").text(msg.C1);
-                $("#tempF").text(msg.F1);
-                $("#tempHumi").text(msg.H1);
-            });
+
 
 
             socket.on("connect", () => {
