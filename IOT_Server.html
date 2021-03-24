@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
     <title>Weather Station</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -74,6 +77,8 @@
 
 
 
+
+
         /*  */
         .btn {
             border: none;
@@ -96,9 +101,21 @@
 </head>
 
 <body>
-    <h1>Trạm Đo</h1>
+    <h1>Trạm Đo Nhiệt Độ</h1>
+
+
     <div id="server-status"></div>
     <div id="stations"></div>
+
+    <div class="btn">
+
+        <form method="get" action="file:///C:/Users/trant/Desktop/web-projects/test-site/index.html?">
+            <input type="submit" value="Trở lại">
+
+
+        </form>
+    </div>
+
 
 
     <div class="block">

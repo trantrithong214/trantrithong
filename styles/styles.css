@@ -1,0 +1,23 @@
+.block1 {
+  color: green;
+  border-color: black;
+  font-size: 50px;
+  margin: 20px 50px 20px;
+}
+.block2 {
+  color: red;
+  border-color: black;
+  font-size: 50px;
+  margin: 20px 50px 20px;
+}
+.block3 {
+  color: blue;
+  border-color: black;
+  font-size: 50px;
+  margin: 20px 50px 20px;
+}
+p {
+  color: black;
+  margin: 20px 50px 20px;
+  font-size: 80px;
+}
