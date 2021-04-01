@@ -12,9 +12,6 @@ var tempNull = { tempC: "", tempF: "", tempK: "" };
 
 const PORT = 3484;
 http.listen(process.env.PORT || PORT, console.log("server running ", PORT));
-app.use("/cambien1.html", cambien1);
-app.use("/cambien2.html", cambien2);
-app.use("/cambien3.html", cambien3);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/" + "/index.html");
