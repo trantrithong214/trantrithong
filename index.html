@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Trạm Cảm Biến Đo</title>
+    <link href="styles/styles.css" rel="stylesheet" type="text/css">
+    <script src="/socket.io/socket.io.js"></script>
+
+</head>
+
+<body>
+    <h1>Trạm Đo Cảm Biến</h1>
+    <p>Vui lòng chọn cảm biến muốn đo</p>
+
+
+
+
+    <div>
+        <form action="cambien1.html" method='GET'>
+            <button id='button1' class='block1'>Cảm biến 1</button>
+        </form>
+    </div>
+    <div>
+        <form method='GET' action="/cambien2.html">
+            <button id='button2' class='block2'>Cảm biến 2</button>
+        </form>
+    </div>
+    <div>
+        <form method='GET' action="/cambien3.html">
+            <button id='button3' class='block3'>Cảm biến 3</button>
+        </form>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        var uri = window.location.toString();
+        if (uri.indexOf("?") > 0) {
+            var clean_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
