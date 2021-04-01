@@ -174,9 +174,9 @@
 
 
         socket.on('temp2web', (msg) => {
-            $('#tempC').text(msg.C);
-            $('#tempF').text(msg.F);
-            $("#tempH").text(msg.H);
+            $('#tempC').text(msg.C1);
+            $('#tempF').text(msg.F1);
+            $("#tempH").text(msg.H1);
         })
 
         socket.on("connect", () => {
