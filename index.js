@@ -1,9 +1,12 @@
 var app = require("express")();
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
-var cambien1 = require("./cambien1");
-var cambien2 = require("./cambien2");
-var cambien3 = require("./cambien3");
+var phong1 = require("./phong1");
+var phong2 = require("./phong2");
+var phong3 = require("./phong3");
+var phong4 = require("./phong4");
+var phong5 = require("./phong5");
+var phong6 = require("./phong6");
 
 var stations = [];
 var stations_ID = [];
@@ -12,9 +15,12 @@ var tempNull = { tempC: "", tempF: "", tempK: "" };
 
 const PORT = 3484;
 http.listen(process.env.PORT || PORT, console.log("server running ", PORT));
-app.use("/cambien1.html", cambien1);
-app.use("/cambien2.html", cambien2);
-app.use("/cambien3.html", cambien3);
+app.use("/phong1.html", phong1);
+app.use("/phong2.html", phong2);
+app.use("/phong3.html", phong3);
+app.use("/phong4.html", phong4);
+app.use("/phong5.html", phong5);
+app.use("/phong6.html", phong6);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/" + "/index.html");

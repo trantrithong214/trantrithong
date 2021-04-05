@@ -4,48 +4,92 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Trạm Cảm Biến Đo</title>
+    <title>Sơ đồ nhà ở</title>
 
     <script src="/socket.io/socket.io.js"></script>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 75px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .blockto {
+            display: flex;
+            flex-direction: row;
+
+
+            width: 1000px;
+            height: 500px;
+            margin-left: 15%;
+        }
+
+        .blocknho {
+            display: flex;
+            flex-direction: column;
+
+
+            width: 500px;
+        }
+
+        .block {
+            margin-top: 15px;
+            margin-left: 15px;
+
+            width: 450px;
+            height: 100px;
+            border: 5px solid black;
+            background-color: yellowgreen;
+
+            font-size: 50px;
+            text-align: center;
+
+
+
+        }
+    </style>
 
 </head>
 
 <body>
-    <h1>Trạm Đo Cảm Biến</h1>
-    <p>Vui lòng chọn cảm biến muốn đo</p>
+    <h1>Sơ đồ nhà ở</h1>
+    <p>Vui lòng chọn khu vực muốn xem:</p>
 
+    <div class="blockto">
+        <div class="blocknho">
+            <button onclick="location.href='/phong1.html'" class='block'>Nhà bếp
+            </button>
 
+            <button onclick="location.href='/phong2.html'" class='block'>Nhà tắm
 
+            </button>
+            <button onclick="location.href='/phong3.html'" class='block'>Phòng khách
 
-    <div>
-        <form method='Get' action="cambien1.html">
-            <button id='button1' class='block1'>Cảm biến 1</button>
-        </form>
+            </button>
+        </div>
+        <div class="blocknho">
+            <button onclick="location.href='/phong4.html'" class='block'>Sân thượng
+
+            </button>
+
+            <button onclick="location.href='/phong5.html'" class='block'>Phòng ngủ
+
+            </button>
+            <button onclick="location.href='/phong6.html'" class='block'>Sân
+
+            </button>
+        </div>
+
     </div>
-    <div>
-        <form method='Get' action="/cambien2.html">
-            <button id='button2' class='block2'>Cảm biến 2</button>
-        </form>
-    </div>
-    <div>
-        <form method='Get' action="/cambien3.html">
-            <button id='button3' class='block3'>Cảm biến 3</button>
-        </form>
-    </div>
-    <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6403530947987!2d106.68022961474875!3d10.762176292331151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1bf766136f%3A0xf47329e2589fc2be!2zMjI1IMSQLiBOZ3V54buFbiBWxINuIEPhu6ssIFBoxrDhu51uZyA0LCBRdeG6rW4gNSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1617262877820!5m2!1svi!2s"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
 
 
 
-    <script type="text/javascript">
-        var uri = window.location.toString();
-        if (uri.indexOf("?") > 0) {
-            var clean_uri = uri.substring(0, uri.indexOf("?"));
-            window.history.replaceState({}, document.title, clean_uri);
-        }
-    </script>
+
 
 
 

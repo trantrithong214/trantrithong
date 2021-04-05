@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng khách</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .trolai {
+            font-size: 30px;
+            color: black;
+            background-color: orange;
+            border-width: 2px;
+            border-color: black;
+            margin-left: 300px;
+
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 75px;
+
+        }
+
+
+
+
+        .blockto {
+            display: flex;
+            flex-direction: row;
+            ;
+            width: 900px;
+            height: 500px;
+            margin-top: 30px;
+            margin-left: 20%;
+
+
+
+
+
+        }
+
+
+        .blocknho {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            height: 500px;
+
+        }
+
+        .block {
+            display: flex;
+            flex-direction: row;
+            border: 2px solid black;
+            width: 400px;
+            border-radius: 10px;
+            height: 100px;
+            margin-top: 20px;
+            margin-left: 20px;
+
+        }
+
+        .thongso1 {
+            color: blue;
+            font-size: 50px;
+
+            width: 250px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .thongso2 {
+            width: 60px;
+
+            color: blue;
+            font-size: 50px;
+            margin-top: 15px;
+        }
+
+        .donvi1 {
+
+            color: blue;
+            width: 10px;
+            font-size: 25px;
+            margin-top: 15px;
+        }
+
+        .donvi2 {
+
+            width: 50px;
+            font-size: 50px;
+            margin-top: 15px;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Phòng khách</h1>
+
+
+    <button class="trolai" onclick="location.href='/'">Trở lại</button>
+
+
+    <div id=" server-status">
+    </div>
+    <div id="stations"></div>
+
+
+    <div class="blockto">
+        <div class="blocknho">
+            <div class="block">
+                <div class="thongso1">Nhiệt Độ:</div>
+                <div class="thongso2" id="tempC"></div>
+                <div class="donvi1">o</div>
+                <div class="donvi2">C</div>
+            </div>
+            <div class="block">
+                <div class="thongso1">Độ Ẩm:</div>
+                <div class="thongso2" id="tempH"></div>
+                <div class="donvi1"></div>
+                <div class="donvi2">%</div>
+            </div>
+            <div class="block">
+                <div class="thongso1">Áp xuất:</div>
+                <div class="thongso2"></div>
+                <div class="donvi1"></div>
+                <div class="donvi2"></div>
+            </div>
+        </div>
+
+
+        <div class="blocknho">
+
+            <div class="block">
+                <div class="thongso1">Không khí:</div>
+                <div class="thongso2"></div>
+                <div class="donvi1"></div>
+                <div class="donvi2"></div>
+            </div>
+            <div class="block">
+                <div class="thongso1">Ánh sáng:</div>
+                <div class="thongso2"></div>
+                <div class="donvi1"></div>
+                <div class="donvi2"></div>
+            </div>
+            <div class="block">
+                <div class="thongso1"></div>
+                <div class="thongso2"></div>
+                <div class="donvi1"></div>
+                <div class="donvi2"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <script>
+
+        var stationID = "";
+        var socket = io();
+
+
+
+        socket.on("stations", msg => {
+            $("#stations").empty();
+            console.log(msg);
+            msg.forEach(element => {
+                let isActiveTxt = element.id === stationID ? "active" : "";
+                let txt = $(`<button id=${element.id} class="btn ${isActiveTxt}"></button>`).text(element.name);
+                $("#stations").append(txt);
+                $(`#${element.id}`).click(function () {
+                    stationID = element.id;
+                    console.log(element.name);
+                    socket.emit("join-room", element.id);
+
+                    let current = document.getElementsByClassName("active");
+                    console.log(current);
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace("active", "");
+                    }
+                    $(`#${element.id}`).addClass("active")
+                })
+            });
+        })
+
+
+        socket.on('temp2web', (msg) => {
+            $('#tempC').text(msg.C1);
+            $('#tempF').text(msg.F1);
+            $("#tempH").text(msg.H1);
+        })
+
+        socket.on("connect", () => {
+            console.log("user ", socket.id, " connected");
+            $("#server-status").text("Server connected")
+        });
+
+        socket.on("disconnect", () => {
+            console.log("user ", socket.id, " disconnected");
+            $("#server-status").text("Server disconnected")
+            $("#stations").empty();
+            $('#tempC').text("");
+            $('#tempF').text("");
+            $('#tempH').text("");
+        });
+
+
+    </script>
+
+</body>
+
+</html>
