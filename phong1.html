@@ -164,32 +164,7 @@
 
     <script>
 
-        var stationID = "";
-        var socket = io();
 
-
-
-        socket.on("stations", msg => {
-            $("#stations").empty();
-            console.log(msg);
-            msg.forEach(element => {
-                let isActiveTxt = element.id === stationID ? "active" : "";
-                let txt = $(`<button id=${element.id} class="btn ${isActiveTxt}"></button>`).text(element.name);
-                $("#stations").append(txt);
-                $(`#${element.id}`).click(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
-
-                    let current = document.getElementsByClassName("active");
-                    console.log(current);
-                    if (current.length > 0) {
-                        current[0].className = current[0].className.replace("active", "");
-                    }
-                    $(`#${element.id}`).addClass("active")
-                })
-            });
-        })
 
 
         socket.on('temp2web', (msg) => {
@@ -198,19 +173,9 @@
             $("#tempH").text(msg.H1);
         })
 
-        socket.on("connect", () => {
-            console.log("user ", socket.id, " connected");
-            $("#server-status").text("Server connected")
-        });
 
-        socket.on("disconnect", () => {
-            console.log("user ", socket.id, " disconnected");
-            $("#server-status").text("Server disconnected")
-            $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
-        });
+
+
 
 
     </script>
