@@ -168,20 +168,26 @@
 
 
 
-        socket.on("stations", msg => {
+        socket.on("stations", (msg) => {
             $("#stations").empty();
             console.log(msg);
-            msg.forEach(element => {
+            msg.forEach((element) => {
+                let isActiveTxt = element.id === stationID ? "active" : "";
 
                 $(`#${element.id}`).ready(function () {
                     stationID = element.id;
                     console.log(element.name);
                     socket.emit("join-room", element.id);
 
-
-                })
+                    let current = document.getElementsByClassName("active");
+                    console.log(current);
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace("active", "");
+                    }
+                    $(`#${element.id}`).addClass("active");
+                });
             });
-        })
+        });
 
 
         socket.on('temp2web', (msg) => {
