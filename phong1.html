@@ -105,7 +105,7 @@
     <button class="trolai" onclick="location.href='/'">Trở lại</button>
 
 
-    <div id="server-status">
+    <div id="serverstatus1">
     </div>
     <div id="stations"></div>
 
@@ -173,20 +173,14 @@
             $("#stations").empty();
             console.log(msg);
             msg.forEach(element => {
-                let isActiveTxt = element.id === stationID ? "active" : "";
-                let txt = $(`<button id=${element.id} class="btn ${isActiveTxt}"></button>`).text(element.name);
-                $("#stations").append(txt);
-                $(`#${element.id}`).click(function () {
+
+
+                $(`#${element.id}`).ready(function () {
                     stationID = element.id;
                     console.log(element.name);
                     socket.emit("join-room", element.id);
 
-                    let current = document.getElementsByClassName("active");
-                    console.log(current);
-                    if (current.length > 0) {
-                        current[0].className = current[0].className.replace("active", "");
-                    }
-                    $(`#${element.id}`).addClass("active")
+
                 })
             });
         })
@@ -200,12 +194,12 @@
 
         socket.on("connect", () => {
             console.log("user ", socket.id, " connected");
-            $("#server-status").text("Đã kết nối sever")
+            $("#serverstatus1").text("Đã kết nối")
         });
 
         socket.on("disconnect", () => {
             console.log("user ", socket.id, " disconnected");
-            $("#server-status").text("Đã ngắt kết nối")
+            $("#serverstatus1").text("Đã ngắt kết nối")
             $("#stations").empty();
             $('#tempC').text("");
             $('#tempF').text("");
