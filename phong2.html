@@ -168,10 +168,10 @@
 
 
 
-        socket.on("stations", msg => {
+        socket.on("stations", msg2 => {
             $("#stations").empty();
             console.log(msg);
-            msg.forEach(element => {
+            msg2.forEach(element => {
 
                 $(`#${element.id}`).ready(function () {
                     stationID = element.id;
@@ -184,7 +184,7 @@
         })
 
 
-        socket.on('temp2web', (msg) => {
+        socket.on('temp2web2', (msg) => {
             $('#tempC').text(msg.C2);
             $('#tempF').text(msg.F2);
             $("#tempH").text(msg.H2);

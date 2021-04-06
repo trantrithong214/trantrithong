@@ -164,7 +164,7 @@
 
     <script>
 
-        var stationID = "1";
+        var stationID = "";
         var socket = io();
 
 
@@ -186,7 +186,7 @@
         })
 
 
-        socket.on('temp2web', (msg) => {
+        socket.on('temp2web1', (msg) => {
             $('#tempC').text(msg.C1);
             $('#tempF').text(msg.F1);
             $("#tempH").text(msg.H1);

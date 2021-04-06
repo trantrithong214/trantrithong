@@ -76,7 +76,11 @@ io.on("connection", (socket) => {
     console.log("client in station: ", socket.adapter.rooms);
   });
 
-  socket.on("temp", (msg) => {
-    io.to(socket.id).emit("temp2web", msg);
+  socket.on("temp1", (msg) => {
+    io.to(socket.id).emit("temp2web1", msg);
+  });
+
+  socket.on("temp2", (msg) => {
+    io.to(socket.id).emit("temp2web2", msg);
   });
 });
