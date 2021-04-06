@@ -168,10 +168,10 @@
 
 
 
-        socket.on("stations", msg2 => {
+        socket.on("stations", msg => {
             $("#stations").empty();
             console.log(msg);
-            msg2.forEach(element => {
+            msg.forEach(element => {
 
                 $(`#${element.id}`).ready(function () {
                     stationID = element.id;
