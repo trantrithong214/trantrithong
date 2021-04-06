@@ -172,18 +172,18 @@
         socket.on("stations", msg => {
             $("#stations").empty();
             console.log(msg);
-            msg.forEach(element => {
 
 
-                $(`#${element.id}`).ready(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
+
+            $(`#${element.id}`).ready(function () {
+                stationID = element.id;
+                console.log(element.name);
+                socket.emit("join-room", element.id);
 
 
-                })
-            });
-        })
+            })
+        });
+
 
 
         socket.on('temp2web', (msg) => {
