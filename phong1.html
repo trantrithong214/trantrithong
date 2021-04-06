@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhà bếp</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         .trolai {
             font-size: 30px;
@@ -167,28 +167,6 @@
         var stationID = "";
         var socket = io();
 
-
-
-        socket.on("stations", (msg) => {
-            $("#stations").empty();
-            console.log(msg);
-            msg.forEach((element) => {
-                let isActiveTxt = element.id === stationID ? "active" : "";
-
-                $(`#${element.id}`).ready(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
-
-                    let current = document.getElementsByClassName("active");
-                    console.log(current);
-                    if (current.length > 0) {
-                        current[0].className = current[0].className.replace("active", "");
-                    }
-                    $(`#${element.id}`).addClass("active");
-                });
-            });
-        });
 
 
         socket.on('temp2web', (msg) => {
