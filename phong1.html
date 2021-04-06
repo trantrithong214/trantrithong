@@ -175,19 +175,8 @@
             $("#tempH").text(msg.H1);
         })
 
-        socket.on("connect", () => {
-            console.log("user ", socket.id, " connected");
-            $("#serverstatus1").text("Đã kết nối")
-        });
 
-        socket.on("disconnect", () => {
-            console.log("user ", socket.id, " disconnected");
-            $("#serverstatus1").text("Đã ngắt kết nối")
-            $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
-        });
+
 
 
     </script>
