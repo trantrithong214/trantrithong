@@ -175,9 +175,9 @@
         socket.on('temp2web', (msg) => {
 
 
-            $('#tempC2').text(msgg.C2);
-            $('#tempF2').text(msgg.F2);
-            $("#tempH2").text(msgg.H2);
+            $('#tempC2').text(msg.C2);
+            $('#tempF2').text(msg.F2);
+            $("#tempH2").text(msg.H2);
             $("#serverstatus2").text("Đã kết nối")
             console.log(msg)
 
@@ -185,6 +185,9 @@
 
         })
         $("#serverstatus2").text("Đã ngắt kết nối")
+        $('#tempC2').text("");
+        $('#tempF2').text("");
+        $("#tempH2").text("");
 
 
 
