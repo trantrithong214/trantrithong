@@ -41,7 +41,7 @@ io.on("connection", (socket) => {
       stations_ID = stations_ID.filter((element) => element !== socket.id);
       stations = stations.filter((station) => station.id !== socket.id);
 
-      io.to(socket.id).emit("temp2web", tempNull);
+      io.emit("temp2web", tempNull);
       io.emit("stations", stations);
       console.log("Room ", socket.id, " disconnected");
       console.log("stations_ID[]: ", stations_ID);
