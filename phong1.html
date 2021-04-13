@@ -165,6 +165,11 @@
     <script>
 
 
+        var socket = io();
+
+
+
+
 
         socket.on('temp2web', (msg) => {
             $('#tempC1').text(msg.C1);
