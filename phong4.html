@@ -107,7 +107,7 @@
 
     <div id="serverstatus4">
     </div>
-    <div id="stations"></div>
+
 
 
     <div class="blockto">
@@ -185,25 +185,7 @@
         })
 
 
-        socket.on('temp2web', (msg) => {
-            $('#tempC').text(msg.C);
-            $('#tempF').text(msg.F);
-            $("#tempH").text(msg.H);
-        })
 
-        socket.on("connect", () => {
-            console.log("user ", socket.id, " connected");
-            $("#serverstatus4").text("Đã kết nối")
-        });
-
-        socket.on("disconnect", () => {
-            console.log("user ", socket.id, " disconnected");
-            $("#serverstatus4").text("Đã ngắt kết nối")
-            $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
-        });
 
 
     </script>

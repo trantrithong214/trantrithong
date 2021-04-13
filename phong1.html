@@ -107,7 +107,7 @@
 
     <div id="serverstatus1">
     </div>
-    <div id="stations"></div>
+
 
 
     <div class="blockto">
@@ -188,10 +188,10 @@
         socket.on("disconnect", () => {
             console.log("user ", socket.id, " disconnected");
             $("#serverstatus1").text("Đã ngắt kết nối")
-            $("#stations").empty();
-            $('#tempC1').text("");
-            $('#tempF1').text("");
-            $('#tempH1').text("");
+
+            $('#tempC1').text("0");
+            $('#tempF1').text("0");
+            $('#tempH1').text("0");
 
         });
 
