@@ -36,17 +36,6 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("a user connected, id: ", socket.id);
   io.emit("stations", stations);
-  socket.on("disconnect", () => {
-    if (stations_ID.includes(socket.id)) {
-      stations_ID = stations_ID.filter((element) => element !== socket.id);
-      stations = stations.filter((station) => station.id !== socket.id);
-
-      io.emit("temp2web", tempNull);
-      io.emit("stations", stations);
-      console.log("Room ", socket.id, " disconnected");
-      console.log("stations_ID[]: ", stations_ID);
-    } else console.log("user ", socket.id, " disconnected");
-  });
 
   socket.on("create-station", (station) => {
     let stationT = station;
