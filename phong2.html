@@ -175,20 +175,17 @@
         socket.on('temp2web', (msg) => {
 
 
-            $('#tempC2').text(msg.C2);
-            $('#tempF2').text(msg.F2);
-            $("#tempH2").text(msg.H2);
+            $('#tempC1').text(msg.C2);
+            $('#tempF1').text(msg.F2);
+            $("#tempH1").text(msg.H2);
             $("#serverstatus2").text("Đã kết nối")
-            console.log(msg)
+            console.log(msg);
+            return 0;
 
 
 
         })
         $("#serverstatus2").text("Đã ngắt kết nối")
-        $('#tempC2').text("");
-        $('#tempF2').text("");
-        $("#tempH2").text("");
-
 
 
 
