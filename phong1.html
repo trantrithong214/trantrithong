@@ -114,13 +114,13 @@
         <div class="blocknho">
             <div class="block">
                 <div class="thongso1">Nhiệt Độ:</div>
-                <div class="thongso2" id="tempC"></div>
+                <div class="thongso2" id="tempC1"></div>
                 <div class="donvi1">o</div>
                 <div class="donvi2">C</div>
             </div>
             <div class="block">
                 <div class="thongso1">Độ Ẩm:</div>
-                <div class="thongso2" id="tempH"></div>
+                <div class="thongso2" id="tempH1"></div>
                 <div class="donvi1"></div>
                 <div class="donvi2">%</div>
             </div>
@@ -169,27 +169,33 @@
 
 
 
-        socket.on("stations", msg => {
-            $("#stations").empty();
+        socket.on("stations", (msg) => {
+
             console.log(msg);
-            msg.forEach(element => {
+            msg.forEach((element) => {
+
 
 
                 $(`#${element.id}`).ready(function () {
                     stationID = element.id;
-                    console.log(element.name);
+
                     socket.emit("join-room", element.id);
 
 
-                })
+
+
+
+                });
             });
-        })
+        });
 
+        socket.on('temp2web', (msg) => {
+            $('#tempC1').text(msg.C1);
+            $('#tempF1').text(msg.F1);
+            $("#tempH1").text(msg.H1);
 
-        socket.on('temp2web1', (msg) => {
-            $('#tempC').text(msg.C1);
-            $('#tempF').text(msg.F1);
-            $("#tempH").text(msg.H1);
+            console.log(msg)
+
         })
 
         socket.on("connect", () => {
@@ -201,9 +207,10 @@
             console.log("user ", socket.id, " disconnected");
             $("#serverstatus1").text("Đã ngắt kết nối")
             $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
+            $('#tempC1').text("");
+            $('#tempF1').text("");
+            $('#tempH1').text("");
+
         });
 
 

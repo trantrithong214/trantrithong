@@ -169,41 +169,8 @@
 
 
 
-        socket.on("stations", msg => {
-            $("#stations").empty();
-            console.log(msg);
-            msg.forEach(element => {
-
-                $(`#${element.id}`).ready(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
 
 
-                })
-            });
-        })
-
-
-        socket.on('temp2web', (msg) => {
-            $('#tempC').text(msg.C);
-            $('#tempF').text(msg.F);
-            $("#tempH").text(msg.H);
-        })
-
-        socket.on("connect", () => {
-            console.log("user ", socket.id, " connected");
-            $("#serverstatus3").text("Đã kết nối")
-        });
-
-        socket.on("disconnect", () => {
-            console.log("user ", socket.id, " disconnected");
-            $("#serverstatus3").text("Đã ngắt kết nối")
-            $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
-        });
 
 
     </script>

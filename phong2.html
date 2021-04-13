@@ -113,13 +113,13 @@
         <div class="blocknho">
             <div class="block">
                 <div class="thongso1">Nhiệt Độ:</div>
-                <div class="thongso2" id="tempC"></div>
+                <div class="thongso2" id="tempC2"></div>
                 <div class="donvi1">o</div>
                 <div class="donvi2">C</div>
             </div>
             <div class="block">
                 <div class="thongso1">Độ Ẩm:</div>
-                <div class="thongso2" id="tempH"></div>
+                <div class="thongso2" id="tempH2"></div>
                 <div class="donvi1"></div>
                 <div class="donvi2">%</div>
             </div>
@@ -168,27 +168,36 @@
 
 
 
-        socket.on("stations", msg => {
-            $("#stations").empty();
+
+        socket.on("stations", (msg) => {
+
             console.log(msg);
-            msg.forEach(element => {
+            msg.forEach((element) => {
+
+
 
                 $(`#${element.id}`).ready(function () {
                     stationID = element.id;
-                    console.log(element.name);
+
                     socket.emit("join-room", element.id);
 
 
-                })
+
+
+
+                });
             });
+        });
+
+        socket.on('temp2web', (msg) => {
+
+            $('#tempC2').text(msg.C2);
+            $('#tempF2').text(msg.F2);
+            $("#tempH2").text(msg.H2);
+            console.log(msg)
         })
 
 
-        socket.on('temp2web2', (msg) => {
-            $('#tempC').text(msg.C2);
-            $('#tempF').text(msg.F2);
-            $("#tempH").text(msg.H2);
-        })
 
         socket.on("connect", () => {
             console.log("user ", socket.id, " connected");
@@ -199,9 +208,9 @@
             console.log("user ", socket.id, " disconnected");
             $("#serverstatus2").text("Đã ngắt kết nối")
             $("#stations").empty();
-            $('#tempC').text("");
-            $('#tempF').text("");
-            $('#tempH').text("");
+            $('#tempC2').text("");
+            $('#tempF2').text("");
+            $('#tempH2').text("");
         });
 
 

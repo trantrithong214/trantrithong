@@ -11,7 +11,14 @@ var phong6 = require("./phong6");
 var stations = [];
 var stations_ID = [];
 
-var tempNull = { tempC: "", tempF: "", tempK: "" };
+var tempNull = {
+  tempC1: "",
+  tempF1: "",
+  tempH1: "",
+  tempC2: "",
+  tempF2: "",
+  tempH1: "",
+};
 
 const PORT = 3484;
 http.listen(process.env.PORT || PORT, console.log("server running ", PORT));
@@ -42,28 +49,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("create-station", (station) => {
-    let stationTemp = station;
-    stationTemp.id = socket.id;
-    console.log("new station info: ", stationTemp);
-    stations.push(stationTemp);
-    stations_ID.push(stationTemp.id);
+    let stationT = station;
+    stationT.id = socket.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
     console.log("stations_ID[]: ", stations_ID);
 
     io.to(socket.id).emit("station-id", socket.id);
-    io.emit("stations", stations);
-  });
-
-  socket.on("update-station", (station) => {
-    console.log("station will updated: ", station.name, ": ", station.id);
-    let isStationUpdate = (element) => element.id == station.id;
-    let index = stations.findIndex(isStationUpdate);
-    stations[index] = station;
-    console.log("updated station info: ", stations[index]);
-    io.emit("stations", stations);
-  });
-
-  socket.on("list-rooms", (msg) => {
-    console.log(stations);
     io.emit("stations", stations);
   });
 
@@ -71,16 +64,12 @@ io.on("connection", (socket) => {
     socket.leaveAll();
     socket.join(msg);
 
-    console.log("join-room", msg);
+    console.log("join-room: ", msg);
 
     console.log("client in station: ", socket.adapter.rooms);
   });
 
-  socket.on("temp1", (msg) => {
-    io.to(socket.id).emit("temp2web1", msg);
-  });
-
-  socket.on("temp2", (msg) => {
-    io.to(socket.id).emit("temp2web2", msg);
+  socket.on("temp", (msg) => {
+    io.emit("temp2web", msg);
   });
 });
