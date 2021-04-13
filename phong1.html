@@ -173,7 +173,7 @@
 
 
         socket.on('temp2web', (msg) => {
-            msgg.toString(msg)
+            msgg.assign(msg)
 
             if (msgg.H1 == null || msgg.C1 == null || msggF1 == null) {
                 $('#tempC1').text("");
