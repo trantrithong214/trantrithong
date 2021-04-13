@@ -173,9 +173,9 @@
 
         socket.on('temp2web', (msg) => {
             if (msg.H2 == null || msg.C2 == null || msg.F2 == null) {
-                $('#tempC2').text("0");
-                $('#tempF2').text("0");
-                $("#tempH2").text("0");
+                $('#tempC2').text("");
+                $('#tempF2').text("");
+                $("#tempH2").text("");
                 $("#serverstatus2").text("Đã ngắt kết nối")
                 console.log(msg)
 
