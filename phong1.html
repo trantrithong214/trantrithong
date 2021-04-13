@@ -172,6 +172,7 @@
 
 
         socket.on('temp2web', (msg) => {
+            msg.push(msg)
             if (msg.H1 == null || msg.C1 == null || msg.F1 == null) {
                 $('#tempC1').text("");
                 $('#tempF1').text("");
