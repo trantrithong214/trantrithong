@@ -70,7 +70,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("temp", (msg) => {
-    io.emit("temp2web", msg);
     msgg = Object.assign(msg);
+    io.emit("temp2web", msgg);
   });
 });
