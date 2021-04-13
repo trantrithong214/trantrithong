@@ -172,14 +172,14 @@
 
 
 
-        socket.on('temp2web', (msg) => {
+        socket.on('temp2web', (msgg) => {
 
 
-            $('#tempC2').text(msg.C2);
-            $('#tempF2').text(msg.F2);
-            $("#tempH2").text(msg.H2);
+            $('#tempC2').text(msgg.C2);
+            $('#tempF2').text(msgg.F2);
+            $("#tempH2").text(msgg.H2);
             $("#serverstatus2").text("Đã kết nối")
-            console.log(msg)
+            console.log(msgg)
 
 
 
