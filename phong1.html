@@ -166,12 +166,14 @@
 
 
         var socket = io();
+        var msg1 = [];
 
 
 
 
 
         socket.on('temp2web', (msg) => {
+
             msg1.push(msg)
             if (msg1.H1 == null || msg1.C1 == null || msg1.F1 == null) {
                 $('#tempC1').text("");
