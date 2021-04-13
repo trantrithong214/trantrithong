@@ -173,25 +173,16 @@
 
 
         socket.on('temp2web', (msg) => {
-            msgg = Object.assign(msg)
-            if (msgg.H2 == null || msgg.C2 == null || msgg.F2 == null) {
-                $('#tempC2').text("");
-                $('#tempF2').text("");
-                $("#tempH2").text("");
-                $("#serverstatus2").text("Đã ngắt kết nối")
-                console.log(msgg)
 
 
-            }
-            else {
-                $('#tempC2').text(msgg.C2);
-                $('#tempF2').text(msgg.F2);
-                $("#tempH2").text(msgg.H2);
-                $("#serverstatus2").text("Đã kết nối")
-                console.log(msg)
+            $('#tempC2').text(msgg.C2);
+            $('#tempF2').text(msgg.F2);
+            $("#tempH2").text(msgg.H2);
+            $("#serverstatus2").text("Đã kết nối")
+            console.log(msg)
 
 
-            }
+
         })
         $("#serverstatus2").text("Đã ngắt kết nối")
 
