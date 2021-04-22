@@ -46,34 +46,9 @@ io.on("connection", (cambien) => {
       io.emit("stations", stations);
       console.log("user ", cambien.id, " disconnected");
     }
-
     if (stations_ID.includes(cambien.id)) {
       stations = stations.filter((station2) => station2.id !== cambien.id);
       io.emit("cambien2web", tnull2);
-      io.emit("stations", stations);
-      console.log("user ", cambien.id, " disconnected");
-    }
-    if (stations_ID.includes(cambien.id)) {
-      stations = stations.filter((station3) => station3.id !== cambien.id);
-      io.emit("cambien3web", tnull3);
-      io.emit("stations", stations);
-      console.log("user ", cambien.id, " disconnected");
-    }
-    if (stations_ID.includes(cambien.id)) {
-      stations = stations.filter((station4) => station4.id !== cambien.id);
-      io.emit("cambien4web", tnull4);
-      io.emit("stations", stations);
-      console.log("user ", cambien.id, " disconnected");
-    }
-    if (stations_ID.includes(cambien.id)) {
-      stations = stations.filter((station5) => station5.id !== cambien.id);
-      io.emit("cambien5web", tnull5);
-      io.emit("stations", stations);
-      console.log("user ", cambien.id, " disconnected");
-    }
-    if (stations_ID.includes(cambien.id)) {
-      stations = stations.filter((station6) => station6.id !== cambien.id);
-      io.emit("cambien6web", tnull6);
       io.emit("stations", stations);
       console.log("user ", cambien.id, " disconnected");
     }
