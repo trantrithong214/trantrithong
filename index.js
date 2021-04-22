@@ -53,6 +53,30 @@ io.on("connection", (cambien) => {
       io.emit("stations", stations);
       console.log("user ", cambien.id, " disconnected");
     }
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station3) => station3.id !== cambien.id);
+      io.emit("cambien3web", tnull3);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    }
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station4) => station4.id !== cambien.id);
+      io.emit("cambien4web", tnull4);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    }
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station5) => station5.id !== cambien.id);
+      io.emit("cambien5web", tnull5);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    }
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station6) => station6.id !== cambien.id);
+      io.emit("cambien6web", tnull6);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    }
   });
 
   cambien.on("create-station1", (station1) => {
@@ -75,8 +99,8 @@ io.on("connection", (cambien) => {
     io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
-  cambien.on("create-station3", (station) => {
-    let stationT = station;
+  cambien.on("create-station3", (station3) => {
+    let stationT = station3;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
@@ -85,8 +109,8 @@ io.on("connection", (cambien) => {
     io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
-  cambien.on("create-station4", (station) => {
-    let stationT = station;
+  cambien.on("create-station4", (station4) => {
+    let stationT = station4;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
@@ -95,8 +119,8 @@ io.on("connection", (cambien) => {
     io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
-  cambien.on("create-station5", (station) => {
-    let stationT = station;
+  cambien.on("create-station5", (station5) => {
+    let stationT = station5;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
@@ -105,8 +129,8 @@ io.on("connection", (cambien) => {
     io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
-  cambien.on("create-station6", (station) => {
-    let stationT = station;
+  cambien.on("create-station6", (station6) => {
+    let stationT = station6;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);

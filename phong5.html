@@ -114,13 +114,13 @@
         <div class="blocknho">
             <div class="block">
                 <div class="thongso1">Nhiệt Độ:</div>
-                <div class="thongso2" id="tempC"></div>
+                <div class="thongso2" id="C"></div>
                 <div class="donvi1">o</div>
                 <div class="donvi2">C</div>
             </div>
             <div class="block">
                 <div class="thongso1">Độ Ẩm:</div>
-                <div class="thongso2" id="tempH"></div>
+                <div class="thongso2" id="H"></div>
                 <div class="donvi1"></div>
                 <div class="donvi2">%</div>
             </div>
@@ -164,26 +164,36 @@
 
     <script>
 
-        var stationID = "";
         var socket = io();
 
 
 
-        socket.on("stations", msg => {
-            $("#stations").empty();
-            console.log(msg);
-            msg.forEach(element => {
-
-                $(`#${element.id}`).ready(function () {
-                    stationID = element.id;
-                    console.log(element.name);
-                    socket.emit("join-room", element.id);
 
 
-                })
-            });
+
+
+        socket.on('cambien5web', (msg5) => {
+            if (msg5.C == "" || msg5.H == "") {
+                $('#C').text("");
+                $("#H").text("");
+                $("#serverstatus5").text("Đã ngắt kết nối")
+                console.log(msg5);
+
+
+
+
+            }
+            else {
+
+                $('#C').text(msg5.C);
+                $("#H").text(msg5.H);
+                $("#serverstatus5").text("Đã kết nối")
+                console.log(msg5);
+
+
+            }
         })
-
+        $("#serverstatus5").text("Đang kết nối...")
 
 
 
