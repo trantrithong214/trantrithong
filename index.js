@@ -41,16 +41,22 @@ io.on("connection", (cambien) => {
 
   cambien.on("disconnect", () => {
     if (stations_ID.includes(cambien.id)) {
-      stations = stations.filter((station) => station.id !== cambien.id);
+      stations = stations.filter((station1) => station1.id !== cambien.id);
       io.emit("cambien1web", tnull1);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    }
+
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station2) => station2.id !== cambien.id);
       io.emit("cambien2web", tnull2);
       io.emit("stations", stations);
       console.log("user ", cambien.id, " disconnected");
-    } else console.log("user ", cambien.id, " disconnectedd");
+    }
   });
 
-  cambien.on("create-station1", (station) => {
-    let stationT = station;
+  cambien.on("create-station1", (station1) => {
+    let stationT = station1;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
@@ -59,8 +65,8 @@ io.on("connection", (cambien) => {
     io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
-  cambien.on("create-station2", (station) => {
-    let stationT = station;
+  cambien.on("create-station2", (station2) => {
+    let stationT = station2;
     stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
