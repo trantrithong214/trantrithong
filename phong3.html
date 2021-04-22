@@ -164,9 +164,52 @@
 
     <script>
 
-        var stationID = "";
+
         var socket = io();
 
+
+
+
+
+        socket.on('cambien3web', (msg3) => {
+
+            if (msg3.C == "", msg3.H == "", msg3.lux == "") {
+                $('#C').text("");
+                $('#H').text("");
+                $('#lux').text("");
+                $("#serverstatus3").text("Đã ngắt kết nối")
+                console.log(msg3);
+
+
+
+
+            }
+
+            else {
+
+                $('#C').text(msg3.C)
+                $("#H").text(msg3.H);
+                $("#lux").text(msg3.lux);
+                $("#serverstatus3").text("Đã kết nối")
+                console.log(msg3);
+                if (msg3.C == null || msg3.H == null) {
+                    $('#C').text("");
+                    $('#H').text("");
+                    $("#lux").text(msg3.lux);
+                    $("#serverstatus3").text("Cảm biến nhiệt độ và độ ẩm đã mất kế nối")
+                    console.log(msg3);
+                }
+                if (msg3.lux == -1) {
+                    $('#C').text(msg3.C)
+                    $("#H").text(msg3.H);
+                    $("#lux").text("");
+                    $("#serverstatus3").text("Cảm biến ánh sáng đã mất kết nối")
+                    console.log(msg3);
+                }
+
+            }
+        })
+        $("#serverstatus3").text("Đang kết nối...")
 
 
 

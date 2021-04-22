@@ -34,7 +34,7 @@
             width: 900px;
             height: 500px;
             margin-top: 30px;
-            margin-left: 20%;
+
 
 
 
@@ -107,6 +107,8 @@
 
     <div id="serverstatus1">
     </div>
+    <div id="stations">
+    </div>
 
 
 
@@ -114,13 +116,13 @@
         <div class="blocknho">
             <div class="block">
                 <div class="thongso1">Nhiệt Độ:</div>
-                <div class="thongso2" id="tempC1"></div>
+                <div class="thongso2" id="C"></div>
                 <div class="donvi1">o</div>
                 <div class="donvi2">C</div>
             </div>
             <div class="block">
                 <div class="thongso1">Độ Ẩm:</div>
-                <div class="thongso2" id="tempH1"></div>
+                <div class="thongso2" id="H"></div>
                 <div class="donvi1"></div>
                 <div class="donvi2">%</div>
             </div>
@@ -143,9 +145,9 @@
             </div>
             <div class="block">
                 <div class="thongso1">Ánh sáng:</div>
-                <div class="thongso2"></div>
-                <div class="donvi1"></div>
-                <div class="donvi2"></div>
+                <div class="thongso2" id="lux"></div>
+                <div class="donvi1"> </div>
+                <div class="donvi2">lx</div>
             </div>
             <div class="block">
                 <div class="thongso1"></div>
@@ -171,29 +173,47 @@
 
 
 
-        socket.on('temp2web', (msg) => {
-            if (msg.C1 == null || msg.F1 == null || msg.H1 == null) {
-                $('#tempC1').text("");
-                $('#tempF1').text("");
-                $("#tempH1").text("");
+        socket.on('cambien1web', (msg1) => {
+
+            if (msg1.C == "", msg1.H == "", msg1.lux == "") {
+                $('#C').text("");
+                $('#H').text("");
+                $('#lux').text("");
                 $("#serverstatus1").text("Đã ngắt kết nối")
-                console.log(msg);
+                console.log(msg1);
 
 
 
 
             }
+
             else {
 
-                $('#tempC1').text(msg.C1);
-                $('#tempF1').text(msg.F1);
-                $("#tempH1").text(msg.H1);
+                $('#C').text(msg1.C)
+                $("#H").text(msg1.H);
+                $("#lux").text(msg1.lux);
                 $("#serverstatus1").text("Đã kết nối")
-                console.log(msg);
+                console.log(msg1);
+                if (msg1.C == null || msg1.H == null) {
+                    $('#C').text("");
+                    $('#H').text("");
+                    $("#lux").text(msg1.lux);
+                    $("#serverstatus1").text("Cảm biến nhiệt độ và độ ẩm đã mất kế nối")
+                    console.log(msg1);
+                }
+                if (msg1.lux == -1) {
+                    $('#C').text(msg1.C)
+                    $("#H").text(msg1.H);
+                    $("#lux").text("");
+                    $("#serverstatus1").text("Cảm biến ánh sáng đã mất kết nối")
+                    console.log(msg1);
+                }
 
             }
         })
-        $("#serverstatus1").text("Đã ngắt kết nối")
+        $("#serverstatus1").text("Đang kết nối...")
+
+
 
 
 

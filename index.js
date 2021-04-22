@@ -10,14 +10,15 @@ var phong6 = require("./phong6");
 
 var stations = [];
 var stations_ID = [];
+var tnull1 = {
+  C: "",
+  H: "",
+  lux: "",
+};
 
-var tempNull = {
-  tempC1: "",
-  tempF1: "",
-  tempH1: "",
-  tempC2: "",
-  tempF2: "",
-  tempH1: "",
+var tnull2 = {
+  C: "",
+  H: "",
 };
 
 const PORT = 3484;
@@ -33,32 +34,98 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/" + "/index.html");
 });
 
-io.on("connection", (socket) => {
-  console.log("a user connected, id: ", socket.id);
+io.on("connection", (cambien) => {
+  console.log("a user connected, id: ", cambien.id);
+
   io.emit("stations", stations);
 
-  socket.on("create-station", (station) => {
+  cambien.on("disconnect", () => {
+    if (stations_ID.includes(cambien.id)) {
+      stations = stations.filter((station) => station.id !== cambien.id);
+      io.emit("cambien1web", tnull1);
+      io.emit("cambien2web", tnull2);
+      io.emit("stations", stations);
+      console.log("user ", cambien.id, " disconnected");
+    } else console.log("user ", cambien.id, " disconnectedd");
+  });
+
+  cambien.on("create-station1", (station) => {
     let stationT = station;
-    stationT.id = socket.id;
+    stationT.id = cambien.id;
     console.log("new station info: ", stationT);
     stations.push(stationT);
     stations_ID.push(stationT.id);
     console.log("stations_ID[]: ", stations_ID);
-
-    io.to(socket.id).emit("station-id", socket.id);
+    io.emit("station-id", cambien.id);
+    io.emit("stations", stations);
+  });
+  cambien.on("create-station2", (station) => {
+    let stationT = station;
+    stationT.id = cambien.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
+    console.log("stations_ID[]: ", stations_ID);
+    io.emit("station-id", cambien.id);
+    io.emit("stations", stations);
+  });
+  cambien.on("create-station3", (station) => {
+    let stationT = station;
+    stationT.id = cambien.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
+    console.log("stations_ID[]: ", stations_ID);
+    io.emit("station-id", cambien.id);
+    io.emit("stations", stations);
+  });
+  cambien.on("create-station4", (station) => {
+    let stationT = station;
+    stationT.id = cambien.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
+    console.log("stations_ID[]: ", stations_ID);
+    io.emit("station-id", cambien.id);
+    io.emit("stations", stations);
+  });
+  cambien.on("create-station5", (station) => {
+    let stationT = station;
+    stationT.id = cambien.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
+    console.log("stations_ID[]: ", stations_ID);
+    io.emit("station-id", cambien.id);
+    io.emit("stations", stations);
+  });
+  cambien.on("create-station6", (station) => {
+    let stationT = station;
+    stationT.id = cambien.id;
+    console.log("new station info: ", stationT);
+    stations.push(stationT);
+    stations_ID.push(stationT.id);
+    console.log("stations_ID[]: ", stations_ID);
+    io.emit("station-id", cambien.id);
     io.emit("stations", stations);
   });
 
-  socket.on("join-room", (msg) => {
-    socket.leaveAll();
-    socket.join(msg);
-
-    console.log("join-room: ", msg);
-
-    console.log("client in station: ", socket.adapter.rooms);
+  cambien.on("cambien1", (msg1) => {
+    io.emit("cambien1web", msg1);
   });
-
-  socket.on("temp", (msg) => {
-    io.emit("temp2web", msg);
+  cambien.on("cambien2", (msg2) => {
+    io.emit("cambien2web", msg2);
+  });
+  cambien.on("cambien3", (msg3) => {
+    io.emit("cambien3web", msg3);
+  });
+  cambien.on("cambien4", (msg4) => {
+    io.emit("cambien4web", msg4);
+  });
+  cambien.on("cambien5", (msg5) => {
+    io.emit("cambien5web", msg5);
+  });
+  cambien.on("cambien6", (msg6) => {
+    io.emit("cambien6web", msg6);
   });
 });
