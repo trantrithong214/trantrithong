@@ -113,13 +113,13 @@
         <div class="blocknho">
             <div class="block">
                 <div class="thongso1">Nhiệt Độ:</div>
-                <div class="thongso2" id="C2"></div>
+                <div class="thongso2" id="C"></div>
                 <div class="donvi1">o</div>
                 <div class="donvi2">C</div>
             </div>
             <div class="block">
                 <div class="thongso1">Độ Ẩm:</div>
-                <div class="thongso2" id="H2"></div>
+                <div class="thongso2" id="H"></div>
                 <div class="donvi1"></div>
                 <div class="donvi2">%</div>
             </div>
@@ -172,10 +172,10 @@
 
 
 
-        socket.on('temp2web2', (msg2) => {
-            if (msg2.C2 == "" || msg2.H2 == "") {
-                $('#C2').text("");
-                $("#H2").text("");
+        socket.on('cambien2web', (msg2) => {
+            if (msg2.C == "" || msg2.H == "") {
+                $('#C').text("");
+                $("#H").text("");
                 $("#serverstatus2").text("Đã ngắt kết nối")
                 console.log(msg2);
 
@@ -185,8 +185,8 @@
             }
             else {
 
-                $('#C2').text(msg2.C2);
-                $("#H2").text(msg2.H2);
+                $('#C').text(msg2.C);
+                $("#H").text(msg2.H);
                 $("#serverstatus2").text("Đã kết nối")
                 console.log(msg2);
 
